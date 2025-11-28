@@ -1,0 +1,295 @@
+/* =========================================
+   1. TOKENS & GLOBAL
+   ========================================= */
+:root {
+  --primary: #0284c7;        /* Sky 600 */
+  --primary-hover: #0369a1;  /* Sky 700 */
+  --bg-app: #f8fafc;         /* Slate 50 */
+  --text-main: #1e293b;      /* Slate 800 */
+  --text-muted: #64748b;     /* Slate 500 */
+  
+  --success: #10b981;
+  --danger: #ef4444;
+  
+  --glass-nav: rgba(255, 255, 255, 0.85);
+  --glass-card: rgba(255, 255, 255, 0.7);
+  --radius: 16px;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg-app); color: var(--text-main); }
+
+/* =========================================
+   2. LAYOUT & BACKGROUND
+   ========================================= */
+.dashboard-wrapper {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+}
+
+.bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.6;
+}
+.blob-1 { width: 500px; height: 500px; background: #bae6fd; top: -100px; left: -100px; }
+.blob-2 { width: 400px; height: 400px; background: #e9d5ff; top: 400px; right: -50px; }
+
+/* =========================================
+   3. NAVBAR
+   ========================================= */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: var(--glass-nav); padding: 12px 24px;
+}
+.navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.navbar-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; color: var(--primary); }
+.brand-icon { width: 36px; height: 36px; background: #e0f2fe; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.navbar-links { display: flex; align-items: center; gap: 20px; }
+.nav-link { text-decoration: none; color: var(--text-muted); font-weight: 500; transition: 0.2s; }
+.nav-link:hover { color: var(--primary); }
+.user-profile-circle { width: 36px; height: 36px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
+
+/* =========================================
+   4. CAROUSEL (IMG TAG)
+   ========================================= */
+/* ... (Mantenha seus tokens e layout global igual) ... */
+
+/* =========================================
+   SWIPER CUSTOM STYLES (Estilo Profissional)
+   ========================================= */
+.carousel-centering-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  padding: 0 20px;
+}
+
+.carousel-container-swiper {
+  width: 100%;
+  max-width: 1200px;
+  height: 450px; /* Altura fixa no Desktop */
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.mySwiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  background-color: #1e293b; /* Fundo enquanto carrega */
+}
+
+.swiper-slide-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Imagem de Fundo */
+.swiper-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%; /* Foca um pouco pra cima */
+  display: block;
+}
+
+/* Overlay para centralizar o texto */
+.swiper-overlay-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end; /* Texto embaixo */
+  justify-content: center; /* Texto no meio */
+  padding-bottom: 50px;
+  z-index: 10;
+}
+
+/* Card de Vidro */
+.glass-badge {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px 32px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 600px;
+  color: white;
+  animation: floatUp 0.8s ease-out;
+}
+
+.glass-badge h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.glass-badge p {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+/* --- Customização dos Controles do Swiper --- */
+/* Bolinhas (Pagination) */
+.swiper-pagination-bullet {
+  background: rgba(255,255,255,0.5) !important;
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background: #fff !important;
+  transform: scale(1.2);
+}
+
+/* Setas (Navigation) */
+.swiper-button-next, .swiper-button-prev {
+  color: white !important;
+  width: 50px !important;
+  height: 50px !important;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.2s;
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 20px !important;
+  font-weight: bold;
+}
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  background: white;
+  color: var(--primary) !important;
+}
+
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .carousel-container-swiper {
+    height: 300px; /* Menor no celular */
+    border-radius: 0;
+    max-width: 100vw;
+    margin-left: -20px; /* Quebra o padding do container pai */
+    margin-right: -20px;
+  }
+  .glass-badge h2 { font-size: 1.4rem; }
+  .glass-badge { width: 90%; padding: 16px; }
+  .swiper-button-next, .swiper-button-prev { display: none !important; } /* Esconde setas no mobile */
+}
+
+/* ... (Mantenha o restante do CSS: Grid, Cards, etc.) ... */
+/* =========================================
+   5. CONTENT & GRID
+   ========================================= */
+.content-container { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
+.section-block { margin-top: 40px; }
+.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.section-header h2 { font-size: 1.4rem; color: var(--text-main); display: flex; align-items: center; gap: 8px; margin: 0; }
+.badge-count { background: var(--primary); color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; }
+
+.matches-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+.empty-state { color: var(--text-muted); font-style: italic; }
+
+/* =========================================
+   6. PARTIDA CARD
+   ========================================= */
+.match-card {
+  background: var(--glass-card); backdrop-filter: blur(16px); border: 1px solid white;
+  border-radius: 20px; padding: 20px; box-shadow: var(--shadow-sm);
+  transition: transform 0.2s; display: flex; flex-direction: column; gap: 16px;
+}
+.match-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.match-card.status-win { border-left: 5px solid var(--success); }
+.match-card.status-lose { border-left: 5px solid var(--danger); }
+
+.match-header { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); }
+.match-date { display: flex; align-items: center; gap: 6px; font-weight: 500; }
+.match-badge { font-weight: 700; font-size: 0.75rem; padding: 4px 10px; border-radius: 6px; }
+.badge-win { background: #d1fae5; color: var(--success); }
+.badge-lose { background: #fee2e2; color: var(--danger); }
+
+.match-content { display: flex; align-items: center; justify-content: space-between; }
+.team-block { flex: 1; text-align: center; font-weight: 700; font-size: 1.1rem; color: var(--text-main); }
+.scoreboard-area { display: flex; align-items: center; gap: 8px; justify-content: center; }
+
+.score-input {
+  width: 52px; height: 52px; border: 2px solid #e2e8f0; border-radius: 12px;
+  text-align: center; font-size: 1.3rem; font-weight: 700; color: var(--primary);
+  background: white; outline: none; transition: 0.2s; -moz-appearance: textfield;
+}
+.score-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(2,132,199,0.1); }
+.score-input::-webkit-outer-spin-button, .score-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.versus { color: #cbd5e1; font-weight: 700; font-size: 1.1rem; }
+
+.final-score-display { display: flex; flex-direction: column; align-items: center; }
+.score-number { font-size: 1.6rem; font-weight: 900; color: var(--text-muted); }
+.score-number.text-win { color: var(--success); }
+.versus-small { font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; margin: -4px 0; letter-spacing: 1px; }
+
+.match-footer { padding-top: 16px; border-top: 1px solid #f1f5f9; display: flex; justify-content: center; }
+.btn-save {
+  background: var(--primary); color: white; border: none; padding: 12px 24px;
+  border-radius: 12px; font-weight: 600; font-size: 0.95rem; cursor: pointer;
+  display: flex; align-items: center; gap: 8px; transition: 0.2s;
+}
+.btn-save:hover { background: var(--primary-hover); }
+.btn-save:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+.real-result { font-size: 0.9rem; color: var(--text-muted); }
+.real-result strong { color: var(--text-main); margin-left: 6px; font-size: 1.1rem; }
+
+/* =========================================
+   7. FOOTER & TOAST
+   ========================================= */
+.footer-container { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.9rem; margin-top: auto; }
+.footer-links { margin-top: 10px; }
+.footer-links a { color: var(--primary); text-decoration: none; font-weight: 600; }
+.dot { margin: 0 8px; color: #cbd5e1; }
+
+.loading-screen { height: 100vh; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 600; font-size: 1.2rem; background: var(--bg-app); }
+
+.toast-notification {
+  position: fixed; bottom: 24px; right: 24px; padding: 16px 20px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  color: white; font-weight: 600; box-shadow: var(--shadow-lg);
+  animation: slideIn 0.3s ease-out; z-index: 2000; min-width: 300px;
+}
+.toast-content { display: flex; align-items: center; gap: 12px; }
+.toast-close { background: none; border: none; color: white; cursor: pointer; opacity: 0.8; padding: 0; display: flex; }
+.toast-close:hover { opacity: 1; }
+.toast-notification.success { background: var(--success); }
+.toast-notification.info { background: var(--primary); }
+
+@keyframes slideIn { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+@media (max-width: 768px) {
+  .carousel-wrapper { height: 250px; min-height: 250px; border-radius: 0; width: 100vw; margin-left: -20px; margin-right: -20px; }
+  .carousel-slide { padding: 20px; }
+  .carousel-overlay { max-width: 100%; padding: 16px; }
+  .carousel-overlay h2 { font-size: 1.2rem; }
+  .carousel-btn { width: 40px; height: 40px; }
+  .matches-grid { grid-template-columns: 1fr; }
+  .navbar-content { flex-direction: column; gap: 10px; }
+}

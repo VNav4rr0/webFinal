@@ -1,0 +1,29 @@
+/* Substitua todo o conteúdo do seu src/index.css por isso: */
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+  background-color: #f3f4f6;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%; /* Remove a trava de 1280px padrão do Vite */
+  margin: 0;
+  padding: 0;
+  text-align: left; /* Remove o alinhamento central padrão */
+}

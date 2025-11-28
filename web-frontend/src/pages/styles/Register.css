@@ -1,0 +1,245 @@
+/* =========================================================
+   TOKENS & VARIÁVEIS (Mantendo a identidade do Login)
+========================================================= */
+:root {
+  --bg-color: #f8fafc;
+  --primary: #0284c7; /* Azul Sky - Consistente com o Login */
+  --primary-hover: #0369a1;
+  --accent-soft: #e0f2fe;
+  
+  --text-title: #1e293b;
+  --text-body: #64748b;
+  --text-placeholder: #94a3b8;
+  
+  --glass-surface: rgba(255, 255, 255, 0.7);
+  --input-bg: #ffffff;
+  
+  --shadow-lg: 0 20px 40px -8px rgba(148, 163, 184, 0.2);
+  --shadow-primary: 0 8px 20px -4px rgba(2, 132, 199, 0.4);
+  
+  --radius: 20px;
+  --transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+.register-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Background Shapes (Levemente diferentes do Login para dinamismo) */
+.background-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.7;
+  animation: float 14s infinite alternate ease-in-out;
+}
+
+.shape-1 {
+  width: 600px;
+  height: 600px;
+  background: #bae6fd;
+  top: -200px;
+  right: -100px;
+}
+
+.shape-2 {
+  width: 400px;
+  height: 400px;
+  background: #ccfbf1; /* Teal suave */
+  bottom: -100px;
+  left: -50px;
+  animation-delay: -5s;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+.register-container {
+  width: 100%;
+  max-width: 400px;
+  z-index: 10;
+}
+
+.register-card {
+  background: var(--glass-surface);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid white;
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  box-shadow: var(--shadow-lg);
+  animation: fadeUp 0.6s ease-out;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.register-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.header-icon {
+  width: 56px;
+  height: 56px;
+  background: white;
+  border-radius: 16px;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transform: rotate(10deg);
+}
+
+.register-header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-title);
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.register-header p {
+  color: var(--text-body);
+  font-size: 0.95rem;
+}
+
+/* =========================================================
+   INPUTS (Estilo Slot)
+========================================================= */
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background: var(--input-bg);
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 6px;
+  transition: var(--transition);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.icon-slot {
+  width: 42px;
+  height: 42px;
+  background: var(--bg-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-body);
+  margin-right: 12px;
+  transition: var(--transition);
+}
+
+.input-group:focus-within {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -4px rgba(0,0,0,0.05);
+}
+
+.input-group:focus-within .icon-slot {
+  background: var(--primary);
+  color: white; /* Diferença sutil: no registro o ícone fica preenchido */
+}
+
+.input-group input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--text-title);
+  outline: none;
+  padding: 8px 0;
+}
+
+.input-group input::placeholder {
+  color: var(--text-placeholder);
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+.btn-primary {
+  margin-top: 10px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+.shadow-hover:hover {
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-primary);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.register-footer {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--text-body);
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(30px, 30px); }
+}
