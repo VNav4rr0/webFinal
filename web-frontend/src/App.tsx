@@ -1,5 +1,5 @@
 
-import Dashboard from './pages/dashboard'; 
+import Dashboard from './pages/dashboardadmin' ; 
 
 import '../src/pages/styles/App.css';
 

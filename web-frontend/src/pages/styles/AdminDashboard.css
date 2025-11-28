@@ -1,0 +1,247 @@
+/* =========================================
+   1. GLOBAL & TOKENS (Consistência com Dashboard)
+   ========================================= */
+:root {
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --bg-app: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --glass-nav: rgba(255, 255, 255, 0.85);
+  --glass-card: rgba(255, 255, 255, 0.8);
+  --radius: 16px;
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.admin-wrapper {
+  min-height: 100vh;
+  position: relative;
+  background: var(--bg-app);
+  color: var(--text-main);
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Background Blobs (Reutilizados) */
+.bg-blob { position: absolute; border-radius: 50%; filter: blur(80px); z-index: 0; opacity: 0.6; }
+.blob-1 { width: 500px; height: 500px; background: #bae6fd; top: -100px; left: -100px; }
+.blob-2 { width: 400px; height: 400px; background: #e9d5ff; top: 200px; right: -50px; }
+
+/* =========================================
+   2. NAVBAR
+   ========================================= */
+.admin-navbar {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.5);
+  background: var(--glass-nav); padding: 12px 24px;
+}
+.navbar-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.navbar-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.2rem; color: var(--text-main); }
+.brand-icon { width: 36px; height: 36px; background: #e0f2fe; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.navbar-brand small { color: var(--primary); background: #e0f2fe; padding: 2px 6px; border-radius: 6px; font-size: 0.7rem; margin-left: 8px; text-transform: uppercase; }
+
+.navbar-actions { display: flex; align-items: center; gap: 16px; }
+.admin-profile { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; }
+.avatar { width: 32px; height: 32px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+.btn-logout { background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 8px; border-radius: 8px; transition: 0.2s; }
+.btn-logout:hover { background: #fee2e2; color: #ef4444; }
+
+/* =========================================
+   3. LAYOUT & STATS
+   ========================================= */
+.admin-container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 1; }
+
+.admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 20px; }
+.header-title h1 { font-size: 1.8rem; margin: 0; color: var(--text-main); }
+.header-title p { color: var(--text-muted); margin: 4px 0 0; }
+
+.stats-grid { display: flex; gap: 16px; }
+.stat-card {
+  background: white; padding: 12px 20px; border-radius: 12px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid rgba(255,255,255,0.5);
+  min-width: 140px;
+}
+.stat-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.stat-icon.blue { background: #e0f2fe; color: var(--primary); }
+.stat-icon.green { background: #dcfce7; color: #16a34a; }
+.stat-icon.purple { background: #f3e8ff; color: #9333ea; }
+.stat-card h3 { margin: 0; font-size: 1.2rem; font-weight: 800; }
+.stat-card span { font-size: 0.8rem; color: var(--text-muted); }
+
+/* =========================================
+   4. LISTA DE PARTIDAS (CARD STYLE)
+   ========================================= */
+.matches-section {
+  background: var(--glass-card); backdrop-filter: blur(16px);
+  border-radius: 24px; padding: 32px; box-shadow: var(--shadow-lg); border: 1px solid rgba(255,255,255,0.6);
+}
+
+.section-toolbar { display: flex; justify-content: space-between; margin-bottom: 24px; }
+.search-box {
+  background: white; border: 1px solid #e2e8f0; border-radius: 12px;
+  display: flex; align-items: center; padding: 0 12px; gap: 8px; width: 300px;
+}
+.search-box input { border: none; outline: none; padding: 10px 0; width: 100%; color: var(--text-main); }
+.search-icon { color: var(--text-muted); }
+
+.btn-primary {
+  background: var(--primary); color: white; border: none; padding: 10px 20px;
+  border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2); transition: 0.2s;
+}
+.btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+/* TABELA */
+.table-responsive { overflow-x: auto; }
+.admin-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+.admin-table th { text-align: left; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; padding: 0 16px; text-transform: uppercase; }
+.admin-table td { background: white; padding: 16px; vertical-align: middle; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
+.admin-table tr td:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; border-left: 1px solid #f1f5f9; }
+.admin-table tr td:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-right: 1px solid #f1f5f9; }
+.admin-table tr:hover td { background: #f8fafc; transform: scale(1.005); transition: 0.2s; }
+
+.team-cell { font-size: 1rem; color: var(--text-main); }
+.team-cell.right { text-align: right; }
+.team-cell.left { text-align: left; }
+.vs-cell { text-align: center; color: var(--text-muted); font-weight: 700; font-size: 0.8rem; }
+.date-cell { color: var(--text-muted); font-size: 0.9rem; }
+
+.status-badge { font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+.status-badge.aberta { background: #dcfce7; color: #16a34a; }
+.status-badge.encerrada { background: #f1f5f9; color: var(--text-muted); }
+
+.actions-cell { display: flex; gap: 8px; justify-content: flex-end; }
+.action-btn { width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+.action-btn.edit { background: #e0f2fe; color: var(--primary); }
+.action-btn.edit:hover { background: var(--primary); color: white; }
+.action-btn.delete { background: #fee2e2; color: #ef4444; }
+.action-btn.delete:hover { background: #ef4444; color: white; }
+.action-btn.delete.confirm { width: auto; padding: 0 10px; font-weight: 700; font-size: 0.8rem; }
+
+/* =========================================
+   5. MODAL GLASS
+   ========================================= */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px);
+  display: flex; justify-content: center; align-items: center; z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-glass {
+  background: white; width: 90%; max-width: 500px; border-radius: 24px; padding: 32px;
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);
+  animation: slideUp 0.3s ease-out;
+}
+
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.modal-header h2 { margin: 0; font-size: 1.5rem; color: var(--text-main); }
+.close-btn { background: #f1f5f9; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+.close-btn:hover { background: #e2e8f0; color: var(--text-main); }
+
+.match-inputs { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.vs-divider { font-weight: 800; color: #cbd5e1; font-size: 0.8rem; padding-top: 24px; }
+
+.input-group { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.input-group.full { margin-bottom: 24px; }
+.input-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+.input-group input {
+  padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; outline: none; transition: 0.2s;
+}
+.input-group input:focus { border-color: var(--primary); }
+
+.modal-footer { display: grid; grid-template-columns: 1fr 2fr; gap: 12px; }
+.btn-secondary { background: white; border: 2px solid #e2e8f0; color: var(--text-muted); padding: 12px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+.btn-secondary:hover { background: #f8fafc; border-color: #cbd5e1; }
+
+/* Animações e Toast (Reutilizados) */
+.toast-notification { position: fixed; bottom: 24px; right: 24px; padding: 16px 20px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; gap: 16px; color: white; font-weight: 600; box-shadow: var(--shadow-lg); animation: slideIn 0.3s ease-out; z-index: 2000; min-width: 300px; }
+.toast-content { display: flex; align-items: center; gap: 12px; }
+.toast-close { background: none; border: none; color: white; cursor: pointer; opacity: 0.8; }
+.toast-notification.success { background: #10b981; }
+.toast-notification.error { background: #ef4444; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+@media (max-width: 600px) {
+  .admin-header { flex-direction: column; align-items: flex-start; }
+  .stats-grid { width: 100%; overflow-x: auto; padding-bottom: 10px; }
+  .match-inputs { flex-direction: column; }
+  .vs-divider { display: none; }
+  .modal-glass { padding: 20px; }
+}
+/* ... MANTENHA O INÍCIO DO CSS IGUAL (Tokens, Navbar, Layout) ... */
+
+/* ... (Na seção de BOTÕES) ... */
+
+/* Botão de Perigo (Novo) */
+.btn-danger {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+.btn-danger:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+/* ... (MANTENHA OS OUTROS ESTILOS) ... */
+
+/* =========================================
+   ESTILOS DO MODAL DE EXCLUSÃO (NOVO)
+   ========================================= */
+
+.danger-modal {
+  max-width: 400px !important; /* Modal menor e mais focado */
+  text-align: center;
+  border: 1px solid #fecaca !important; /* Borda vermelha suave */
+}
+
+.modal-icon-danger {
+  width: 70px;
+  height: 70px;
+  background: #fef2f2;
+  color: #ef4444;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.modal-body-center h2 {
+  margin: 0 0 10px;
+  color: #1e293b;
+  font-size: 1.4rem;
+}
+
+.modal-body-center p {
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.modal-footer.center {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  grid-template-columns: none; /* Remove o grid do modal padrão */
+}
+
+/* Responsividade do modal */
+@media (max-width: 600px) {
+  .modal-footer.center {
+    flex-direction: column-reverse; /* Cancelar em baixo no celular */
+  }
+  .btn-danger { width: 100%; }
+}
